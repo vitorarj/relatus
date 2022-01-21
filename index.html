@@ -43,6 +43,10 @@
 
         }
 
+        function newRow(){
+            $('#rownew').css('display','block');
+        }
+
     </script>
 
 </head>
@@ -190,7 +194,6 @@
                                                             <th>Hora Inicio</th>
                                                             <th>Hora Fim</th>
                                                             <th>Acumulado</th>
-                                                            <th>Avaliação</th>
                                                         </tr>
                                                     </thead>
                                                     <tbody>
@@ -200,7 +203,6 @@
                                             <td>07:35</td>
                                             <td>09:55</td>
                                             <td>01h20</td>
-                                            <td>APROVADA</td>
                                         </tr>
                                     </tbody>
                                                 </table>
@@ -316,6 +318,14 @@
                                                             <td>09:55</td>
                                                             <td>01h20</td>
                                                             <td>APROVADA</td>
+                                                        </tr>
+                                                        <tr>
+                                                            <td>Elaboração de casos de testes</td>
+                                                            <td>08/01/2022</td>
+                                                            <td>14:00</td>
+                                                            <td>15:30</td>
+                                                            <td>01h30</td>
+                                                            <td>PENDENTE</td>
                                                         </tr>
                                                     </tbody>
                                                 </table>
@@ -480,26 +490,38 @@
         <div class="modal-dialog modal-dialog-centered modal-lg" role="document">
             <div class="modal-content">
                 <div class="modal-header">
-                    <h5 class="modal-title" id="exampleModalLabel">Iniciar Atividade</h5>
+                    <h5 class="modal-title" id="exampleModalLabel">Cadastrar atividade retroativa</h5>
                     <button class="close" type="button" data-dismiss="modal" aria-label="Close">
                         <span aria-hidden="true">×</span>
                     </button>
                 </div>
                 <div class="modal-body">
-                    <form class="row g-3">
-                        <div class="col-md-6">
+                    <form>
+                        <div class="row">
+                        <div class="col-md-8">
                           <label for="inputEmail4" class="form-label">Descrição</label>
                           <input type="email" class="form-control" id="inputEmail4" value="Elaboração de casos de testes">
                         </div>
-                        <div class="col-md-6">
-                          <label for="inputPassword4" class="form-label">Início</label>
-                          <input type="text" class="form-control" id="inputPassword4" value="07:34" disabled>
+                        <div class="col-md-4">
+                          <label for="inputPassword4" class="form-label">Data</label>
+                          <input type="date" class="form-control" id="inputPassword4" value="2022-08-01">
                         </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-md-6">
+                          <label for="inputEmail4" class="form-label">Hora Inicio</label>
+                          <input type="text" class="form-control" id="inputPassword4" value="14:00">
+                        </div>
+                        <div class="col-md-6">
+                          <label for="inputPassword4" class="form-label">Hora Fim</label>
+                          <input type="text" class="form-control" id="inputPassword4" value="15:30">
+                        </div>
+                    </div>
                       </form>
                 </div>
                 <div class="modal-footer">
                     <button class="btn btn-secondary" type="button" data-dismiss="modal">Cancelar</button>
-                    <a class="btn btn-primary" data-dismiss="modal" onclick="escondeIniciar()">Iniciar</a>
+                    <a class="btn btn-primary" data-dismiss="modal" onclick="newRow()">Cadastrar</a>
                 </div>
             </div>
         </div>

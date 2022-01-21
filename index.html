@@ -19,6 +19,31 @@
 
     <!-- Custom styles for this template-->
     <link href="css/sb-admin-2.min.css" rel="stylesheet">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
+    <script>
+
+        function escondeIniciar(){
+            $('#iniciar').css('display','none');
+            $('#andamento').css('display','block');
+            $('#andamento2').css('display','block');
+            $('#andamento3').css('display','block');
+            $('#andamento4').css('display','block');
+            $('#andamento5').css('display','block');
+        }
+
+        function exibirTable(){
+            $('#no-registro').css('display','none');
+            $('#table').css('display','block');
+            $('#iniciar').css('display','block');
+            $('#andamento').css('display','none');
+            $('#andamento2').css('display','none');
+            $('#andamento3').css('display','none');
+            $('#andamento4').css('display','none');
+            $('#andamento5').css('display','none');
+
+        }
+
+    </script>
 
 </head>
 
@@ -117,15 +142,74 @@
                                
                                 <div class="card shadow mb-4">
                                     <div class="card-body">
-                                        <a data-toggle="modal" data-target="#startModal" class="btn btn-success btn-icon-split btn-lg" style="margin-top: 3%; margin-bottom: 3%;">
+
+                                        <div class="row" style="margin-top: 50px; margin-bottom: 50px;">
+                                            <div id="andamento2" class="col-lg-5" style="text-align: left; display: none;">
+                                                <h6>Atividade em andamento</h6>
+                                                <h3><strong style="color: black;">Ordenação de fichas eletrônicas</strong></h3>
+
+                                            </div>
+                                            
+                                            <div id="andamento3" class="col-lg-4" style="text-align: center; display: none;">
+                                                <h6>Tempo decorrido</h6>
+                                                <h1><strong style="color: black;">01h20</strong></h1>
+                                            </div>
+                                            <div id="andamento4" class="col-lg-3" style="display: none;">
+                                                <a id="andamento5" style="display: none;" data-toggle="modal" data-target="#endModal" class="btn btn-warning btn-icon-split btn-lg" style="margin-top: 3%; margin-bottom: 3%;">
+                                                    <span class="icon text-white-50">
+                                                        <i class="fas fa-stop"></i>
+                                                    </span>
+                                                    <span class="text">Finalizar Atividade</span>
+                                                </a>
+                                            </div>
+                                        </div>
+
+                                        <div class="row">
+                                            <div class="col-lg-4"></div>
+                                            <div class="col-lg-4">
+
+                                        <a id="iniciar" data-toggle="modal" data-target="#startModal" class="btn btn-success btn-icon-split btn-lg" style="margin-top: 3%; margin-bottom: 3%;">
                                             <span class="icon text-white-50">
                                                 <i class="fas fa-play"></i>
                                             </span>
                                             <span class="text">Iniciar Atividade</span>
                                         </a>
+                                            </div>
+                                            <div class="col-lg-4"></div>
+                                        </div>
+
+                                        <hr style="height:2px;border-width:0;color:gray;background-color:gray;">
+                                        <span id="no-registro" class="text">Nenhuma atividade resgistrada hoje.</span>
+                                        <div class="row">
+                                            <div id="table" class="table-responsive" style="display: none;">
+                                                <table  class="table table-bordered" id="dataTable" width="100%" cellspacing="0">
+                                                    <thead>
+                                                        <tr style="background-color: #a9a9a9; color: black;">
+                                                            <th>Descrição da Atividade</th>
+                                                            <th>Data</th>
+                                                            <th>Hora Inicio</th>
+                                                            <th>Hora Fim</th>
+                                                            <th>Acumulado</th>
+                                                            <th>Avaliação</th>
+                                                        </tr>
+                                                    </thead>
+                                                    <tbody>
+                                        <tr>
+                                            <td>Ordenação de fichas eletrônicas</td>
+                                            <td>12/12/2021</td>
+                                            <td>07:35</td>
+                                            <td>09:55</td>
+                                            <td>01h20</td>
+                                            <td>APROVADA</td>
+                                        </tr>
+                                    </tbody>
+                                                </table>
+                                            </div>
                                     </div>
-                                    <hr style="height:2px;border-width:0;color:gray;background-color:gray;">
-                                    <span class="text">Nenhuma atividade resgistrada hoje.</span>
+                                    </div>
+
+                                    
+
                                     <div class="row">
                                         <div class="col-lg-9">
                                         </div>
@@ -137,7 +221,7 @@
                                             </div>
                                             <h3 class="font-weight-bold" style="margin-top: -10px;">00h00 / 08h00</h3>
                                             <h3 class="small font-weight-bold" style="margin-top: -10px;">Cumpridas / Esperadas</h3>
-                                        </br>
+                                         </br>
                                         </div>
                                     </div>
                                 </div>
@@ -149,7 +233,7 @@
                                         <div class="card-body">
                                             <div class="row">
                                                 <div class="col-lg-4">
-                                                    <a href="#" class="btn btn-success btn-icon-split">
+                                                    <a href="#" class="btn btn-success btn-icon-split" data-toggle="modal" data-target="#retroativoModal">
                                                         <span class="icon text-white-50">
                                                             <i class="fas fa-plus"></i>
                                                         </span>
@@ -160,10 +244,10 @@
                                                     Período de:
                                                 </div>
                                                 <div class="col-lg-3">
-                                                    <input type="date" class="form-control" id="inputEmail4" value="Elaboração de casos de testes">
+                                                    <input type="date" value="2021-12-01" class="form-control" id="inputEmail4" value="Elaboração de casos de testes">
                                                 </div>
                                                 <div class="col-lg-3">
-                                                    <input type="date" class="form-control" id="inputEmail4" value="Elaboração de casos de testes">
+                                                    <input type="date" value="2021-12-15" class="form-control" id="inputEmail4" value="Elaboração de casos de testes">
                                                 </div>
                                                 <div class="col-lg-1">
                                                     <a href="#" class="btn btn-primary btn-icon-split">
@@ -353,7 +437,69 @@
                 </div>
                 <div class="modal-footer">
                     <button class="btn btn-secondary" type="button" data-dismiss="modal">Cancelar</button>
-                    <a class="btn btn-primary">Iniciar</a>
+                    <a class="btn btn-primary" data-dismiss="modal" onclick="escondeIniciar()">Iniciar</a>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Modal Finalizar Atividade-->
+    <div class="modal fade" id="endModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel"
+        aria-hidden="true">
+        <div class="modal-dialog modal-dialog-centered modal-lg" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="exampleModalLabel">Finalizar Atividade</h5>
+                    <button class="close" type="button" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">×</span>
+                    </button>
+                </div>
+                <div class="modal-body">
+                    <form class="row g-3">
+                        <div class="col-md-6">
+                          <label for="inputEmail4" class="form-label">Descrição</label>
+                          <input type="email" class="form-control" id="inputEmail4" value="Elaboração de casos de testes" disabled>
+                        </div>
+                        <div class="col-md-6">
+                          <label for="inputPassword4" class="form-label">Início</label>
+                          <input type="text" class="form-control" id="inputPassword4" value="07:34" disabled>
+                        </div>
+                      </form>
+                </div>
+                <div class="modal-footer">
+                    <button class="btn btn-secondary" type="button" data-dismiss="modal">Cancelar</button>
+                    <a class="btn btn-primary" data-dismiss="modal" onclick="exibirTable()">Finalizar</a>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Modal Cadastro retroativo-->
+    <div class="modal fade" id="retroativoModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel"
+        aria-hidden="true">
+        <div class="modal-dialog modal-dialog-centered modal-lg" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="exampleModalLabel">Iniciar Atividade</h5>
+                    <button class="close" type="button" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">×</span>
+                    </button>
+                </div>
+                <div class="modal-body">
+                    <form class="row g-3">
+                        <div class="col-md-6">
+                          <label for="inputEmail4" class="form-label">Descrição</label>
+                          <input type="email" class="form-control" id="inputEmail4" value="Elaboração de casos de testes">
+                        </div>
+                        <div class="col-md-6">
+                          <label for="inputPassword4" class="form-label">Início</label>
+                          <input type="text" class="form-control" id="inputPassword4" value="07:34" disabled>
+                        </div>
+                      </form>
+                </div>
+                <div class="modal-footer">
+                    <button class="btn btn-secondary" type="button" data-dismiss="modal">Cancelar</button>
+                    <a class="btn btn-primary" data-dismiss="modal" onclick="escondeIniciar()">Iniciar</a>
                 </div>
             </div>
         </div>

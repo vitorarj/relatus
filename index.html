@@ -22,7 +22,62 @@
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
     <script>
 
+"use strict";
+
+let hour = 0;
+let minute = 0;
+let second = 0;
+let millisecond = 0;
+
+let cron;
+
+document.form_main.start.onclick = () => start();
+document.form_main.pause.onclick = () => pause();
+document.form_main.reset.onclick = () => reset();
+
+function start() {
+  pause();
+  cron = setInterval(() => { timer(); }, 10);
+}
+
+function pause() {
+  clearInterval(cron);
+}
+
+function reset() {
+  hour = 0;
+  minute = 0;
+  second = 0;
+  millisecond = 0;
+  document.getElementById('hour').innerText = '00';
+  document.getElementById('minute').innerText = '00';
+  document.getElementById('second').innerText = '00';
+}
+
+function timer() {
+  if ((millisecond += 10) == 1000) {
+    millisecond = 0;
+    second++;
+  }
+  if (second == 60) {
+    second = 0;
+    minute++;
+  }
+  if (minute == 60) {
+    minute = 0;
+    hour++;
+  }
+  document.getElementById('hour').innerText = returnData(hour);
+  document.getElementById('minute').innerText = returnData(minute);
+  document.getElementById('second').innerText = returnData(second);
+}
+
+function returnData(input) {
+  return input > 10 ? input : `0${input}`
+}
+
         function escondeIniciar(){
+            start();
             $('#iniciar').css('display','none');
             $('#andamento').css('display','block');
             $('#andamento2').css('display','block');
@@ -32,6 +87,8 @@
         }
 
         function exibirTable(){
+            pause();
+            reset();
             $('#no-registro').css('display','none');
             $('#table').css('display','block');
             $('#iniciar').css('display','block');
@@ -52,6 +109,17 @@
         function newRow(){
             $('#rownew').css('display','block');
         }
+
+        var timeDisplay = document.getElementById("time");
+
+
+function refreshTime() {
+  var dateString = new Date().toLocaleString("en-US", {timeZone: "America/Sao_Paulo"});
+  var formattedString = dateString.replace(", ", " - ");
+  timeDisplay.innerHTML = formattedString;
+}
+
+setInterval(refreshTime, 1000);
 
     </script>
 
@@ -130,7 +198,7 @@
 
                         <!-- Pending Requests Card Example -->
                         <div class="col-xl-12 col-md-6 mb-4">
-                            <div class="h5 mb-0 font-weight-bold text-gray-800">19 de Janeiro de 2022, 10:25</div>
+                            <div class="h5 mb-0 font-weight-bold text-gray-800">21 de Janeiro de 2022, 14:25</div>
                         </div>
                     </div>
 
@@ -162,7 +230,7 @@
                                             
                                             <div id="andamento3" class="col-lg-4" style="text-align: center; display: none;">
                                                 <h6>Tempo decorrido</h6>
-                                                <h1><strong style="color: black;">01h20</strong></h1>
+                                                <h1><strong style="color: black;"><span id="hour">00</span>h<span id="minute">00</span>m<span id="second">00</span></strong></h1>
                                             </div>
                                             <div id="andamento4" class="col-lg-3" style="display: none;">
                                                 <a id="andamento5" style="display: none;" data-toggle="modal" data-target="#endModal" class="btn btn-warning btn-icon-split btn-lg" style="margin-top: 3%; margin-bottom: 3%;">
@@ -188,11 +256,11 @@
                                             <div class="col-lg-4"></div>
                                         </div>
 
-                                        <hr style="height:2px;border-width:0;color:gray;background-color:gray;">
+                                        <hr style="height:2px;border-width:0;color:rgb(185, 185, 185);background-color:rgb(185, 185, 185);">
                                         <span id="no-registro" class="text">Nenhuma atividade resgistrada hoje.</span>
                                         <div class="row">
                                             <div id="table" class="table-responsive" style="display: none;">
-                                                <table  class="table table-bordered" id="dataTable" width="100%" cellspacing="0">
+                                                <table id="dataTable" width="100%" cellspacing="0">
                                                     <thead>
                                                         <tr style="background-color: #a9a9a9; color: black;">
                                                             <th>Descrição da Atividade</th>
